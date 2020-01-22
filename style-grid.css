@@ -1,0 +1,236 @@
+:root {
+  --color-primary: rgb(54, 112, 199) ;
+  --color-light:#f4f4f4;
+  --color-dark:#333;
+  --color-warning: rgb(99,36,36);
+}
+* {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+body {
+  margin:0;
+  font-family: "Work Sans",sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  display: grid;
+  grid: 
+      "header header header header header" auto
+      "...... lists . active-list ......" auto /
+      1fr minmax(100px,300px) .3fr minmax(250px,500px) 1fr;
+}
+@media (max-width:1000px){
+  body{
+    grid: 
+      "header header header" auto
+      ". lists ." auto 
+      ". active-list ." auto;
+  }
+}
+/* parent-1 heading  */
+.title {
+  grid-area: header;
+  text-align: center;
+  font-size: calc(6vw + 2rem); /*here 2rem sets the min size */
+  font-weight: 900;
+  color: rgba(0,0,0,0.2);
+  letter-spacing: 2px;
+  margin: -0.1em 0 0.1em;
+}
+
+/* parent-2 div */
+.all-tasks {
+  grid-area: lists;
+}
+.task-list {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  list-style: circle;
+  padding-left: 1.1em;
+}
+.list-name {
+  cursor: pointer;
+}
+.list-name:hover {
+  opacity: 0.7;
+}
+.active-list {
+  font-weight: 700;
+}
+
+/*styling the form*/
+form {
+  display: flex;
+}
+
+/*styling the buttons*/
+.btn {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+/* styling the + buttons*/
+.btn.create{
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-right: 0.25em;
+  transition: opacity 150ms ease-in;
+}
+.btn.create:hover {
+  opacity: 0.7;
+}
+/*styling the input elements*/
+.new {
+  background: transparent;
+  border: 0;
+  color: inherit; /*inherit from parent*/
+  border-bottom: 1px solid currentColor; /*currentColor is the color of the text in the input*/
+  font-size: inherit;
+  outline: none;
+  padding: 0.25em;
+
+  transition: border-bottom 150ms ease-in;
+  order: 1;
+}
+.new:focus {
+  border-bottom-width: 3px;
+}
+.new::placeholder{
+  opacity: 0.4;
+}
+.new:focus::placeholder {
+  opacity: 0.15;
+}
+/*input element of left list*/
+.new.list {
+  font-size: 1.1rem;
+  width: 75%;
+}
+/*input element of right list*/
+.new.task {
+  margin-bottom : 0;
+}
+
+.new-task-creator .create {
+  color: var(--color-primary);
+}
+
+/* parent-3 div */
+.todo-list {
+  --spacer: 2rem;
+  grid-area: active-list;
+  grid-auto-rows: 50px;
+  
+  color: var(--color-dark);
+}
+.todo-header {
+  display: flex;
+  padding: var(--spacer);
+  background: #e4e4e4;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo-title {
+  margin: 0 1em 0 0; /*to make sure there's a gap bw title and count always*/ 
+}
+.task-count {
+  margin: 0;
+  font-size: 1rem;
+}
+.todo-body {
+  background: var(--color-light);
+  padding: var(--spacer);
+  position: relative;
+}
+
+[type="checkbox"] {
+  opacity: 0; /*we have to tab through and select them*/
+  position: absolute;
+}
+.task label {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+.task {
+  position: relative;
+  margin-bottom: 1.5em;
+}
+/* line separator */
+.task::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -50%;
+  height: 1px;
+  background: currentColor;
+  opacity: .15;
+}
+/*styling the span(to be used as a custom checkbox)*/
+.custom-checkbox {
+  --size: 0.75em;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  margin-right: var(--size);
+  cursor: pointer;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: transform 300ms ease-in-out;
+}
+.task:hover .custom-checkbox{
+  transform: scale(1.2);
+  color: var(--color-primary);
+}
+[type="checkbox"]:focus + label .custom-checkbox {
+  transform: scale(1.2);
+  color: var(--color-primary);
+}
+[type="checkbox"]:checked + label .custom-checkbox{
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 3px whitesmoke;
+}
+[type="checkbox"]:checked + label {
+  opacity: 0.5;
+}
+/* styling the strike out */
+.task label::after{
+  content: "";
+  position: absolute;
+  left: 1.5em;
+  right: 0;
+  /* top: 50%; */
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 150ms ease-in-out;
+}
+[type="checkbox"]:checked + label::after{
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.delete-stuff {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+  width: 100%;
+  color: var(--color-light);
+}
+
+.btn.delete {
+  opacity: 0.7;
+  font-size: 1.2rem;
+  transition: color 200ms;
+}
+.btn.delete:hover {
+  color: var(--color-warning);
+}

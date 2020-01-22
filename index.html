@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PROJECT-TO DO LIST</title>
+    <link rel="stylesheet" href="style-grid.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1 class="title">Stuff I need to do</h1>
+    <div class="all-tasks">
+        <h2 class="task-list-title">My lists</h2>
+        <ul class="task-list" data-lists>
+            <!-- <li class="list-name active-list">Youtube</li>
+            <li class="list-name">Work</li>
+            <li class="list-name">Grocery</li> -->
+        </ul>
+
+        <form action="" data-new-list-form>
+            <input type="text" class="new list" placeholder="new list name" aria-label="new list name" data-new-list-input>
+            <button class="btn create" aria-label="create new list">+</button>
+        </form>
+        <h5 class="btn delete all" data-clear-all-button>Clear All</h5>
+    </div>
+
+    <div class="todo-list" data-list-display-container>
+        <div class="todo-header">
+            <h2 class="todo-title" data-list-title></h2>
+            <p class="task-count" data-list-count><b>0</b> tasks remaining</p>
+        </div>
+
+        <div class="todo-body">
+            <div class="tasks" data-tasks>
+                <!-- task 1 -->
+                <!-- <div class="task">
+                    <input type="checkbox" id="task-1"/>
+                    <label for="task-1">
+                        <span class="custom-checkbox"></span>
+                        record todo list videos</label>
+                </div> -->
+                <!-- /task-1 -->
+                <!-- <div class="task">
+                    <input type="checkbox" id="task-2"/>
+                    <label for="task-2">
+                        <span class="custom-checkbox"></span>
+                        do the homework</label>
+                </div> -->
+                <!-- /task-2 -->
+                <!-- <div class="task">
+                    <input type="checkbox" id="task-3"/>
+                    <label for="task-3">
+                        <span class="custom-checkbox"></span>
+                        go to gym
+                     </label>
+                </div> -->
+                <!-- /task-3 -->
+            </div>
+            <div class="new-task-creator">
+                <form action="" data-new-task-form>
+                    <input type="text" data-new-task-input class="new task" placeholder="enter new task" aria-label="new task name">
+                    <button class="btn create" aria-label="create new task">+</button>
+                </form>
+            </div>
+        </div>
+        <div class="delete-stuff">
+            <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
+            <button class="btn delete" data-delete-list-button>Delete List</button>
+        </div>
+    </div>
+    
+    <!-- Doesn't get rendered on the page,can be used in javascript directly -->
+    <template id = "task-template">
+        <div class="task">
+            <input type="checkbox"/>
+            <label>
+                <span class="custom-checkbox"></span>
+            </label>
+        </div>
+    </template>
+</body>
+</html>
